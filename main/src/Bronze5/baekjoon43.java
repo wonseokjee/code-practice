@@ -1,4 +1,4 @@
-package practiceOne;
+package Bronze5;
 
 import java.util.Scanner;
 
