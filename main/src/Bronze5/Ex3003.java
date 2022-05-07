@@ -1,6 +1,25 @@
 package Bronze5;
 
+import java.util.Scanner;
+
 public class Ex3003 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int arr[] = {1, 1, 2, 2, 2, 8};
+        int put = 0;
+        int ans[] = new int[6];
+        for (int i = 0; i < arr.length ; i++) {
+            System.out.print("숫자를 입력하시오: ");
+            put = scanner.nextInt();
+            ans[i] = arr[i] - put;
+        }
+        System.out.print("결과: ");
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(ans[i]+" ");
+        }
+
+    }
+
 }
 
 /*
