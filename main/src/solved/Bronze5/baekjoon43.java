@@ -1,4 +1,4 @@
-package Bronze5;
+package solved.Bronze5;
 
 import java.util.Scanner;
 
