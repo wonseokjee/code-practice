@@ -1,4 +1,4 @@
-package solved.Bronze4;
+package solvedAc.Bronze4;
 
 import java.util.Scanner;
 

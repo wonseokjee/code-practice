@@ -1,4 +1,4 @@
-package solved.Bronze5;
+package solvedAc.Bronze5;
 
 import java.util.Scanner;
 
