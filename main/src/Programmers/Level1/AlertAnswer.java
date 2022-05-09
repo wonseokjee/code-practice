@@ -1,9 +1,8 @@
 package Programmers.Level1;
 
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+
 
 public class AlertAnswer {
     public static int[] solution(String[] id_list, String[] report, int k) {
@@ -16,8 +15,28 @@ public class AlertAnswer {
             arr[i] = new String[] {reportArr[0], reportArr[1]};
         }
         System.out.println("이차원 배열 출력: "+arr[4][0]);//이차원배열 출력해보기
+        System.out.println("행으로 이차원 배열 출력 가능한지: "+ Arrays.toString(arr[0]));
 
-        //유저별 신고당한 횟수
+        //동일한 배열 삭제하기
+        //if i j 로 돌려가면서 검색해서 삭제.;
+        //deepEquals는 다차원 배열에서의 비교가 가능. equals는 객체끼리의 대소비교나 다차원배열 비교는 불가능.
+        // 다차원 배열의 경우 배열안에 배열이 가진 주소를 받아 비교하기 때문.
+        for (int i = 0; i < report.length; i++) {
+            for (int j = 0; j < report.length; j++) {
+                if (arr[i]==arr[j]) {
+                    System.out.println("아예 같은 배열끼리 겹친다" + i + j);
+                }
+            }
+        } //진행중 null값으로 해도 잘 돌아가긴함-> 안돌아감
+        System.out.println("배열 다시 뽑아보기");
+        for (int i = 0; i < report.length; i++) {
+            System.out.println(Arrays.toString(arr[i]));
+        }
+
+
+        /*
+        유저별 신고당한 횟수
+         */
         int[] count = new int[id_list.length];
         for (int i = 0; i< id_list.length ; i++) {
             for (int j = 0; j<report.length; j++) {
@@ -29,20 +48,44 @@ public class AlertAnswer {
 //if 문에서 조건문을 비교할 때 String은 객체이므로 서로 주소를 비교한다. 그래서 equal()을 쓰면 문자열 비교가능
         System.out.println("유저별 신고당한 횟수: "+ Arrays.toString(count)); //count int배열 출력
 
-        //신고당한 유저 찾기
+        /*
+        신고당한 유저 찾기
+        */
         int[] alert_id = new int[id_list.length];
         for (int i =0 ; i< count.length; i++) {
             if (count[i] >= k) {
                 alert_id[i] = 1;
             }
         }
-        System.out.println("신고당한 유저: "+ Arrays.toString(alert_id));
-        //신고당한 유저를 id로 찾기
+        System.out.println("신고당한 유저 체크: "+ Arrays.toString(alert_id));
 
+        /*
+        신고당한 유저를 id로 찾기
+        */
+        ArrayList findUser = new ArrayList();
         for (int i = 0; i < id_list.length; i++) {
             if (alert_id[i] == 1) {
-
+                findUser.add(id_list[i]);
             }
+        }
+        System.out.println("정지된 유저 찾기(findUser): " + findUser);
+
+        int[] answer = new int[id_list.length];//코테 기본 변수
+        /*
+        유저가 신고하여 정지된 id
+         */
+        for (int i = 0; i < report.length; i++) {
+            if (findUser.contains(arr[i][1])) {
+                //System.out.println("findUser와 arr["+i+"][1]이 잘 매칭되었는지 체크: "+ arr[i][1]);
+                for (int j = 0; j < id_list.length; j++) {
+                    //System.out.println(id_list[j]);
+                    //System.out.println(arr[i][0]);
+                    if(arr[i][0].equals(id_list[j])){
+                        answer[j]+=1;
+                    }
+                }
+            }
+
         }
 
 
@@ -55,7 +98,8 @@ public class AlertAnswer {
 */
 
 
-        int[] answer = {};
+
+        System.out.println("각 유저별로 신고해서 정지된 아이디: "+ Arrays.toString(answer));
         return answer;
     }
 
