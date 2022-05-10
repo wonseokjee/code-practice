@@ -6,7 +6,7 @@ import java.util.*;
 
 public class AlertAnswer {
     public static int[] solution(String[] id_list, String[] report, int k) {
-        System.out.println(id_list[0]);//id_list[0] 출력해보기
+        System.out.println("1. id_list 잘 들어갔는지 출력: "+id_list[0]);//id_list[0] 출력해보기
 
         // report 쪼개서 이차원 배열에 넣기
         String[][] arr = new String[report.length][];
@@ -14,8 +14,8 @@ public class AlertAnswer {
             String[] reportArr = report[i].split(" ");
             arr[i] = new String[] {reportArr[0], reportArr[1]};
         }
-        System.out.println("이차원 배열 출력: "+arr[4][0]);//이차원배열 출력해보기
-        System.out.println("행으로 이차원 배열 출력 가능한지: "+ Arrays.toString(arr[0]));
+        System.out.println("2. 이차원 배열 출력: "+arr[0][0]);//이차원배열 출력해보기
+        System.out.println("3. 행으로 이차원 배열 출력 가능한지: "+ Arrays.toString(arr[0]));
 
         //동일한 배열 삭제하기
         //if i j 로 돌려가면서 검색해서 삭제.;
@@ -23,12 +23,13 @@ public class AlertAnswer {
         // 다차원 배열의 경우 배열안에 배열이 가진 주소를 받아 비교하기 때문.
         for (int i = 0; i < report.length; i++) {
             for (int j = 0; j < report.length; j++) {
-                if (arr[i]==arr[j]) {
-                    System.out.println("아예 같은 배열끼리 겹친다" + i + j);
+                if (Arrays.deepEquals(arr[i],arr[j])&&(i!=j)) {
+                    System.out.println("4. 겹치는 배열 행 출력" + i + j);
+                    arr[j][1] = "";
                 }
             }
         } //진행중 null값으로 해도 잘 돌아가긴함-> 안돌아감
-        System.out.println("배열 다시 뽑아보기");
+        System.out.println("5. 배열 다시 뽑아보기");
         for (int i = 0; i < report.length; i++) {
             System.out.println(Arrays.toString(arr[i]));
         }
@@ -46,7 +47,7 @@ public class AlertAnswer {
             }
         }
 //if 문에서 조건문을 비교할 때 String은 객체이므로 서로 주소를 비교한다. 그래서 equal()을 쓰면 문자열 비교가능
-        System.out.println("유저별 신고당한 횟수: "+ Arrays.toString(count)); //count int배열 출력
+        System.out.println("6. 유저별 신고당한 횟수: "+ Arrays.toString(count)); //count int배열 출력
 
         /*
         신고당한 유저 찾기
@@ -57,7 +58,7 @@ public class AlertAnswer {
                 alert_id[i] = 1;
             }
         }
-        System.out.println("신고당한 유저 체크: "+ Arrays.toString(alert_id));
+        System.out.println("7. 신고당한 유저 체크: "+ Arrays.toString(alert_id));
 
         /*
         신고당한 유저를 id로 찾기
@@ -68,7 +69,7 @@ public class AlertAnswer {
                 findUser.add(id_list[i]);
             }
         }
-        System.out.println("정지된 유저 찾기(findUser): " + findUser);
+        System.out.println("8. 정지된 유저 찾기(findUser): " + findUser);
 
         int[] answer = new int[id_list.length];//코테 기본 변수
         /*
@@ -99,15 +100,19 @@ public class AlertAnswer {
 
 
 
-        System.out.println("각 유저별로 신고해서 정지된 아이디: "+ Arrays.toString(answer));
+        System.out.println("9. 각 유저별로 신고해서 정지된 아이디: "+ Arrays.toString(answer));
         return answer;
     }
 
 
     public static void main(String[] args) {
-        String[] id_list = {"muzi", "frodo", "apeach", "neo"};
-        String[] report = {"muzi frodo", "apeach frodo", "frodo neo", "muzi neo", "apeach muzi"};
-        solution(id_list, report, 2);
+/*        String[] id_list = {"muzi", "frodo", "apeach", "neo"};
+        String[] report = {"muzi frodo", "apeach frodo", "frodo neo", "muzi neo", "apeach muzi", "apeach muzi"};
+        solution(id_list, report, 2);*/
+
+        String[] id_list = {"ryan", "con"};
+        String[] report = {"ryan con","ryan con","ryan con","ryan con"};
+        solution(id_list, report, 3);
     }
 
     /* report 배열을 쪼갠다음에 카운트가 올라가능 방식으로
