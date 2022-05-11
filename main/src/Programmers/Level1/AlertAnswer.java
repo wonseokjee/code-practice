@@ -25,7 +25,7 @@ public class AlertAnswer {
             for (int j = 0; j < report.length; j++) {
                 if (Arrays.deepEquals(arr[i],arr[j])&&(i!=j)) {
                     System.out.println("4. 겹치는 배열 행 출력" + i + j);
-                    arr[j][1] = "";
+                    arr[i][1] = "";
                 }
             }
         } //진행중 null값으로 해도 잘 돌아가긴함-> 안돌아감
