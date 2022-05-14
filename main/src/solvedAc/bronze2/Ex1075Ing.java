@@ -2,7 +2,7 @@ package solvedAc.bronze2;
 
 import java.util.Scanner;
 
-public class Ex1075 {
+public class Ex1075Ing {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int i = 0;
