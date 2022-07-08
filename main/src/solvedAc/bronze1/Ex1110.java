@@ -9,9 +9,13 @@ public class Ex1110 {
         int putIn = scanner.nextInt();
 
         String str = Integer.toString(putIn);
-        String[] Arr = str.split("");
+        String[] arr = str.split("");
 
-        int sol = Integer.parseInt(Arr[0]) + Integer.parseInt(Arr[1]);
+        int sol = Integer.parseInt(arr[0]) + Integer.parseInt(arr[1]);
         System.out.println("답: "+sol);
+
+        String str1 = Integer.toString(sol);
+        String[] arr1 = str1.split("");
+
     }
 }
