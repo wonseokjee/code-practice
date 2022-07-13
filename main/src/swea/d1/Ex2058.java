@@ -3,6 +3,7 @@ package swea.d1;
 import java.util.Scanner;
 
 public class Ex2058 {
+    //swea 완료
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("자연수를 입력하시오: ");
