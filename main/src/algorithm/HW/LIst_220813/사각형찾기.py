@@ -9,12 +9,23 @@ cnt = 0
 square = []
 for i in range(N):
     for j in range(N):
-        if arr[i][j] == 1:
-            cnt+=1
-            square.append([i,j])
-            for k in range(di):
-                ni = i + di[k]
-                nj = j + dj[k]
-                if arr[ni][nj] ==1:
+            if arr[i][j] == 1:
+                cnt+=1
+                square.append([i,j])
+                x = i
+                y = j
+                while True:
+                    for k in range(di):
+                        ni = x + di[k]
+                        nj = y + dj[k]
+                        if [ni, nj] in square:
+                            False
+                            break
+                        if arr[ni][nj] == 1:
+                            cnt += 1
+                            x, y = ni, nj
+                            square.append([ni,nj])
+
+
 
 
