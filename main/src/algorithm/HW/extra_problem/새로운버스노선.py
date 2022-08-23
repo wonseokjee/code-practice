@@ -30,4 +30,4 @@ for tc in range(1,T+1):
         if e > station_max: station_max = e
     for j in range(station_max+1):
         if station[j] > stop_max: stop_max = station[j]
-print(f'#{tc} {stop_max}')
+    print(f'#{tc} {stop_max}')
