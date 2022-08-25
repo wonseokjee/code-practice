@@ -1,21 +1,24 @@
-# T = int(input())
-# for tc in range(1,T+1):
-n = int(input())
-arr = [(idx+1,value) for idx, value in enumerate(map(int, input().split()))]
-cnt = 0
-cnt_max= 0
-cnt_num = 0
-while len(arr) > 0:
-    for i in range(len(arr)):
-        if cnt < arr[i][1]:
-            cnt = arr[i][1]
-            cnt_num = arr[i][0]
-    for j in range(len(arr[:arr[cnt_num-1][0]])):
-        cnt_max += arr[cnt_num-1][1] - arr[j][1]
-    for k in range(cnt_num):
-        arr.pop(0)
+import sys
+sys.stdin = open('백만장자프로젝트.txt', 'r')
+
+T = int(input())
+for tc in range(1,T+1):
+    n = int(input())
+    arr = list(map(int, input().split()))
+    cnt = 0
+    cnt_max= 0
+    cnt_num = 0
+    cnt_min = 0
+    while len(arr) > cnt_min:
+        for i in range(cnt_min,len(arr)):
+            if cnt < arr[i]:
+                cnt = arr[i]
+                cnt_num = i+1
+        for j in range(cnt_min, cnt_num):
+            cnt_max += arr[cnt_num-1] - arr[j]
+        cnt_min = cnt_num
         cnt = 0
-print(cnt_max)
+    print(f'#{tc} {cnt_max}')
 
 
 
