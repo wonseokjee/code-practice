@@ -1,5 +1,5 @@
 import sys
-sys.stdin = open('암호생성기.txt','r')
+sys.stdin = open('암호생성기.txt', 'r')
 
 
 for tc in range(10):
