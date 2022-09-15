@@ -7,10 +7,37 @@
 # 보는 양쪽이 보인지 확인 / 오른쪽아래, 바로 아래 기둥인지 확인.
 # 기둥은 아래가 바닥or기둥, 왼쪽이나 같은좌표가 보
 
+# 삭제시에는 기둥이빠지면 위의 기둥과 위의양옆보가 설치가능한지
+# 보가빠지면 양옆 보와 같은좌표,오른쪽 기둥이 설치가능한지
+
+
 n = int(input())
 build_frame = input()
-def check(x,y,a,b):
-    pass
+frame_len = len(build_frame)
+result =  []
+def create(x,y,a,b):
+    if a == 0:#기둥일때
+        if y==0 or [x,y-1,0] in result:
+            return
+        elif [x-1,y,1] or [x,y,1] in result:
+            return
+    elif a == 1: #보일때
+        if [x-1,y,1] in result and [x+1,y,1] in result:  #양쪽인 보인지
+            return
+        elif [x+1,y-1,0] in result or [x,y-1,0] in result: # 오른쪽아래, 바로 아래가 기둥인지
+            return
+    else:
+        return '설치 불가능'
+
+cnt= 0
+for i in range(frame_len):
+    if len(build_frame) >0:
+        x,y,a,b = build_frame[i]
+        if create(x,y,a,b) =='설치가능':
+            result.append([x,y,a])
+        elif create(x,y,a,b) =='설치 불가능':
+            pass
+print(build_frame)
 
 
 
