@@ -1,27 +1,37 @@
 N, K = map(int, input().split())
-cnt = 5
-result = 0
 basic = ['a','n','t','i','c']
+result = []
 for i in range(N):
     word = input()
-
-
-
-def pick(a):
-    global cnt
-    global result
-    cnt_ins = 0
-    word_ins = []
-    for j in word:
-        if j in basic:
+    # word_cut = word[4:-4]
+    word_else= []
+    for c in word:
+        if c in basic:
+            continue
+        elif c in word_else:
             continue
         else:
-            cnt_ins += 1
-            word_ins.append(j)
-    if cnt_ins + cnt <= K:
-        result += 1
-        for k in word_ins:
-            basic.append(k)
-        cnt += cnt_ins
+            word_else.append(c)
+    result.append([word_else,1])
+result_sort = sorted(result)
 
 print(result)
+print(result_sort)
+cnt=1
+ans = []
+for j in range(len(result)):
+    if j == len(result)-1:
+        if result_sort[j][0] == result_sort[j - 1][0]:
+            result_sort[j][1] = cnt
+        ans.append([len(result_sort[j][0]),result_sort[j][1]])
+    elif result_sort[j][0] == result_sort[j+1][0]:
+        cnt += 1
+    else:
+        result_sort[j][1] = cnt
+        cnt = 1
+        ans.append([len(result_sort[j][0]),result_sort[j][1]])
+print(result_sort)
+print(ans)
+
+
+
