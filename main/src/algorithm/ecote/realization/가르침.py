@@ -17,7 +17,7 @@ result_sort = sorted(result)
 
 print(result)
 print(result_sort)
-cnt=1
+cnt= 1
 ans = []
 for j in range(len(result)):
     if j == len(result)-1:
@@ -30,8 +30,7 @@ for j in range(len(result)):
         result_sort[j][1] = cnt
         cnt = 1
         ans.append([len(result_sort[j][0]),result_sort[j][1]])
-print(result_sort)
 print(ans)
-
+#비트연산자로 전체 구한다음. ans[][0]을 한계까지 더한다음 ans[][1]비교 가장 큰 값을 답으로 뽑아냄.
 
 
