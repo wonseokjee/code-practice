@@ -5,21 +5,19 @@ def inorder(n):
         lst.append(n)
         inorder(n*2+1)
 
-
-
 K = int(input())
 tree = [0]+list(map(int, input().split()))
 lst = [0]
 result = []
 inorder(1)
-# print(tree, lst)
+print(tree, lst)
 
 for i in range(1,len(lst)+1):
     for j in range(len(lst)):
         if i == lst[j]:
             result.append(tree[j])
             break
-# print(result)
+print(result)
 for i in range(1,K+1):
     if i == 1:
         print(result[0])

@@ -2,34 +2,27 @@ import sys
 input = sys.stdin.readline
 sys.setrecursionlimit(10**6)
 
+def dfs(graph, v ,visited):
+    visited[v] = 1
+
+    for i in graph[v]:
+        if visited[i] == 0:
+            dfs(graph, i, visited)
+        else:
+            parent[v] = i
+
 N = int(input())
-arr = [[] for _ in range(N+1)]
-track=[0]*(N+1)
-
-def dfs(n):
-    if track[n] ==0:
-        track[n] = 1
-        # print(f'{n}-',end='')
-        ins.append(n)
-        for j in range(len(arr[n])):
-            dfs(arr[n][j])
-    else:
-        pass
-        # print(n)
-        ins.append(n)
-
-for i in range(1,N):
-    x, y = map(int, input().split())
-    arr[x].append(y)
-    arr[y].append(x)
-ins = []
-result = [0]*(N-1)
-print(arr)
-
-dfs(1)
-print(ins)
-for k in range(1,len(ins),2):
-    result[ins[k]-2] = ins[k+1]
-# print(result)
-for a in result:
-    print(a)
+graph = [[] for _ in range(N+1)]
+visited = [0]*(N+1)
+parent = [0]*(N+1)
+# print(graph)
+for _ in range(N-1):
+    a, b = map(int, input().split())
+    # print(a,b)
+    graph[a].append(b)
+    graph[b].append(a)
+# print(graph)
+dfs(graph, 1, visited)
+# print(parent)
+for j in parent[2:]:
+    print(j)
