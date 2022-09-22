@@ -7,10 +7,13 @@ for tc in range(1,T+1):
     truck_lst.sort(reverse=True)
     print(con_lst,truck_lst)
     cnt = 0
-    for i in range(len(truck)):
-        j = 0
-        for j in range(len(con)):
-            if truck_lst[i] > con_lst[j]:
+    j = 0
+    for i in range(truck):
+
+        for j in range(con):
+            if truck_lst[i] >= con_lst[j]:
+                print(con_lst[j])
                 cnt += con_lst[j]
-                k = j
+                j+=1
                 break
+    print(cnt)
