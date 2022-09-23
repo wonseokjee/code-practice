@@ -1,19 +1,18 @@
 from collections import deque
 import sys
 input = sys.stdin.readline
-def bfs(X,n):
+def bfs(X):
     queue = deque([X])
     while queue:
-        if n > road:
+        if visited[X] > road: # 최단거리를 입력한 visited[X]에 카운트해서 road보다 크면 break
             break
         v = queue.popleft()
         for k in lst[v]:
-            if visited[k] == 0:
-                visited[k] = n
+            if visited[k] == 0: # 방문하지 않았으면
+                visited[k] = visited[v] + 1
                 if visited[k] == road:
                     ans.append(k)
                 queue.append(k)
-        n += 1
 
 city, M, road , X = map(int,input().split())
 lst = [[] for _ in range(city+1)]
@@ -23,7 +22,7 @@ for _ in range(M):
     lst[x].append(y)
 # print(lst)
 ans = []
-bfs(X, 1)
+bfs(X)
 # print(visited)
 if ans == []:
     print(-1)
