@@ -5,6 +5,8 @@
 N = int(input())
 arr = []
 for _ in range(N):
-    arr.append(input().split())
-arr.sort(key=lambda x:int(x[1]),reverse=True)
-
+    name, kor, eng, math = input().split()
+    kor, eng, math = int(kor), int(eng), int(math)
+    arr.append([name,kor,eng,math])
+arr.sort(key=lambda x:(-x[1],x[2],-x[3],x[0]))
+print(arr)
