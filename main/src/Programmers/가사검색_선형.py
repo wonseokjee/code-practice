@@ -2,13 +2,14 @@
 # 2. 쿼리의 result 생성
 # 3. word하나하나를 쿼리와 비교. 맞으면
 # 4. queries를 문자,길이,문자의 슬라이싱주소로 리스트화?
-
+from heapq import heapify
 
 
 word = ["frodo", "front", "frost", "frozen", "frame", "kakao"]
 queries = ["fro??", "????o", "fr???", "fro???", "pro?"]
 result = [0]*len(queries) # result값.
 query = []
+
 
 for i in queries:
     cnt = len(i)
