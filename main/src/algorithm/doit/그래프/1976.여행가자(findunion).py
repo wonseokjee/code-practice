@@ -5,7 +5,6 @@ v = int(input())
 e = int(input())
 parent = [0] * (v + 1)
 lst = []
-yes_no = 'YES'
 # 부모 테이블상에서 부모를 자기 자신으로 초기화
 for i in range(1, v + 1):
     parent[i] = i
@@ -42,12 +41,12 @@ for i in range(len(lst)):
     a, b = lst[i][0], lst[i][1]
     union_parent(parent, a, b)
 
-for i in range(e-1):
-    if not parent[plan[i]] == parent[plan[i+1]]:
-        yes_no = 'NO'
-        break
-print(yes_no)
+ans = set()
+for j in range(len(plan)):
+    ans.add(find_parent(parent, plan[j]))
+print('YES' if len(ans) == 1 else 'NO')
 
+# print(ans)
 # print(lst)
 # print(parent)
 
