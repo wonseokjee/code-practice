@@ -46,9 +46,9 @@ for j in range(len(plan)):
     ans.add(find_parent(parent, plan[j]))
     # ans.append(find_parent(parent, plan[j]))
 print('YES' if len(ans) == 1 else 'NO')
-# print(ans)
-# print(lst)
-# print(parent)
+print(ans)
+print(lst)
+print(parent)
 
 
 # 5

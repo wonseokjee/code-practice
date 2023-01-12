@@ -36,6 +36,7 @@ for i in range(m):
             union_find(parent, people[j], people[j+1])
 print(parent)
 print(party)
+
 ans = 0
 if know_count > 0:
     root_number = parent[know_root]
@@ -52,5 +53,5 @@ print(ans)
 # 1 1
 # 4 1 2 3 4
 # 4 5 6 7 8
-# 2 8 9
 # 2 4 9
+# 2 8 9
