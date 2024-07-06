@@ -1,7 +1,7 @@
 import heapq
 n,m = map(int,input().split())
 graph = [[] for _ in range(n+1)]
-visited = [False] * (n+1)#방문처리 기록용
+# visited = [False] * (n+1)#방문처리 기록용
 INF = int(1e9)
 distance = [INF] * (n+1)
 for i in range(m):
