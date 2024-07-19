@@ -1,28 +1,16 @@
-import heapq
-N,K = map(int,input().split())
-Tmin_heap = []
-Imax_heap = []
-cnt = 0
-for _ in range(K):
-    I,T = map(int,input().split())
-    heapq.heappush(Tmin_heap,[T,I])
-while Tmin_heap :
-    t,i = heapq.heappop(Tmin_heap)
-    # print(t,i)
-    if cnt + t <= N:
-        heapq.heappush(Imax_heap,[i,t])
-        cnt += t
-    else:
-        a, b = heapq.heappop(Imax_heap)
-        cnt -= b
-        if cnt + t <= N and a < i:
-            heapq.heappush(Imax_heap,[i,t])
-            cnt += t
+n,k = map(int,input().split())
+lst = [[0,0]]
+for _ in range(k):
+    i, t = map(int,input().split())
+    lst.append([i,t])
+dp = [[0]*(n+1) for _ in range(k+1)]
+
+for i in range(1, k+1):
+    for j in range(1, n+1):
+        value = lst[i][0]
+        time = lst[i][1]
+        if time > j:
+            dp[i][j] = dp[i-1][j]
         else:
-            heapq.heappush(Imax_heap, [a, b])
-            cnt += b
-# print(cnt)
-ans = 0
-for time, imp in Imax_heap:
-    ans += time
-print(ans)
+            dp[i][j] = max(dp[i-1][j], dp[i-1][j-time]+value)
+print(dp[k][n])

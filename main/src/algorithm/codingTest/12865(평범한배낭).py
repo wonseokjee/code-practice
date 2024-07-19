@@ -1,19 +1,18 @@
-import sys
-input = sys.stdin.readline
-n,k = map(int, input().split())
-stuff = [[0,0]]
-knapsack = [[0 for _ in range(k+1)] for _ in range(n+1)]
-
+n,k = map(int,input().split())
+things = [[0,0]]
 for _ in range(n):
-    stuff.append(list(map(int, input().split())))
-
-for i in range(1, n+1):
-    for j in range(1, k+1):
-        weight = stuff[i][0]
-        value = stuff[i][1]
-
-        if j < weight:
+    weight, value = map(int,input().split())
+    things.append([weight,value])
+knapsack = [[0]*(k+1) for _ in range(n+1)]
+# print(knapsack)
+# print(things)
+for i in range(n+1):
+    for j in range(k+1):
+        weight = things[i][0]
+        value = things[i][1]
+        if weight > j:
             knapsack[i][j] = knapsack[i-1][j]
         else:
-            knapsack[i][j] = max(value + knapsack[i-1][j-weight], knapsack[i-1][j])
+            knapsack[i][j] = max(knapsack[i-1][j], knapsack[i-1][j-weight] + value)
 print(knapsack[n][k])
+
