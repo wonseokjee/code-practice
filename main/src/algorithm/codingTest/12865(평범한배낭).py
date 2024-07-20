@@ -4,8 +4,7 @@ for _ in range(n):
     weight, value = map(int,input().split())
     things.append([weight,value])
 knapsack = [[0]*(k+1) for _ in range(n+1)]
-# print(knapsack)
-# print(things)
+
 for i in range(n+1):
     for j in range(k+1):
         weight = things[i][0]
