@@ -1,39 +1,32 @@
 from collections import deque
-
-m, n = map(int, input().split())
-tomato = []
-q = deque()
-for i in range(n):
-    t = list(map(int, input().split()))
-    tomato.append(t)
-    for j in range(m):
-        if t[j] == 1:
-            q.append((i, j))
-
-dx = [-1, 1, 0, 0]
-dy = [0, 0, -1, 1]
-
-
+m,n = map(int,input().split())
+box = [list(map(int,input().split())) for _ in range(n)]
+queue = deque([])
+# 시작점이 여러개일 경우가 있기 때문에
+# 일단 시작점들을 queue에 넣고 bfs
 def bfs():
-    while q:
-        x, y = q.popleft()
+    while queue:
+        i, j = queue.popleft()
+        for dx,dy in [[0,1],[0,-1],[1,0],[-1,0]]:
+            a = dx + i
+            b = dy + j
+            if 0 <= a <n and 0 <= b < m and box[a][b] == 0:
+                box[a][b] = box[i][j] + 1
+                queue.append([a,b])
 
-        for i in range(4):
-            nx, ny = x + dx[i], y + dy[i]
-            if (0 <= nx < n) and (0 <= ny < m):
-                if tomato[nx][ny] == 0:
-                    tomato[nx][ny] = tomato[x][y] + 1
-                    q.append((nx, ny))
+for i in range(n):
+    for j in range(m):
+        if box[i][j] == 1:
+            queue.append([i,j])
 
 
 bfs()
-
-max_num = 0
-for i in range(n):
-    for j in range(m):
-        if tomato[i][j] == 0:
+ans = 0
+for x in range(n):
+    for y in range(m):
+        if box[x][y] == 0:
             print(-1)
             exit()
-        if tomato[i][j] > max_num:
-            max_num = tomato[i][j]
-print(max_num - 1)
+        if box[x][y] > ans:
+            ans = box[x][y]
+print(ans-1)
