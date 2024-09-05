@@ -48,6 +48,7 @@ while(True):
             break
     else:
         canClean(r,c,d)
+
 print(ans)
 
 
