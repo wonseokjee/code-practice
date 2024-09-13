@@ -27,6 +27,7 @@ def bfs_wheel(x, y):
         visited[num-1] = True
         for d_num in [1,-1]:
             next_num = num+d_num
+            #1,4 번째 톱니에서는 왼쪽 오른쪽만 고려.
             if 0<next_num<=4 and visited[next_num-1] ==False:
                 if next_num > num and wheel[num-1][6] == wheel[next_num][2]:
                     queue.append([next_num,dir*-1])
